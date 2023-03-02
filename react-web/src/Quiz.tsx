@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 import { Question } from "./Question";
 
@@ -15,6 +16,8 @@ const defaultResult = {
 };
 
 export const Quiz: React.FC<IProps> = ({ quiz }) => {
+  const navigate = useNavigate();
+
   const [steps, setSteps] = useState(0);
   const [answers, setAnswers] = useState(defaultResult);
 
@@ -44,11 +47,16 @@ export const Quiz: React.FC<IProps> = ({ quiz }) => {
       alignItems="center"
     >
       {steps !== quiz.length ? (
-        <Question
-          word={quiz[steps].question}
-          handleAnswer={handleAnswer}
-          steps={steps}
-        />
+        <Box>
+          <Button mb={4} colorScheme="gray" onClick={() => navigate("/")}>
+            Back
+          </Button>
+          <Question
+            word={quiz[steps].question}
+            handleAnswer={handleAnswer}
+            steps={steps}
+          />
+        </Box>
       ) : (
         <Flex flexDir="column" gap={3}>
           <Text color="white" fontSize="3xl">
