@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-import { Question } from "./Question";
+import { Question } from "../shared/components/Question";
 
-import { IQuiz } from "./Router";
+import { IQuiz } from "../Router";
 
 interface IProps {
   quiz: IQuiz[];

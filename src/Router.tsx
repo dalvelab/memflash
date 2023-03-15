@@ -1,6 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Dashboard } from "./Dashboard";
-import { Quiz } from "./Quiz";
+import { Dashboard } from "./pages/Dashboard";
+import { Quiz } from "./pages/Quiz";
+import { CreateQuiz } from "./pages/CreateQuiz";
+import { Layout } from "./shared/components/Layout";
 
 export interface IQuiz {
   question: string;
@@ -21,10 +23,20 @@ const quiz: IQuiz[] = [
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Dashboard />,
+      },
+      {
+        path: "quiz/create",
+        element: <CreateQuiz />,
+      },
+    ],
   },
   {
-    path: "/quiz",
+    path: "quiz",
     element: <Quiz quiz={quiz} />,
   },
 ]);

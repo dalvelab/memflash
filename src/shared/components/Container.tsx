@@ -3,17 +3,12 @@ import { ReactNode } from "react";
 import { chakra, StyleProps } from "@chakra-ui/react";
 
 interface ContainerProps extends StyleProps {
-  type?: "flex" | "grid";
-  children: ReactNode[] | ReactNode;
+  children: ReactNode;
 }
 
-export const Container: React.FC<ContainerProps> = ({
-  type = "flex",
-  children,
-  ...props
-}) => {
+export const Container: React.FC<ContainerProps> = ({ children, ...props }) => {
   const containerBase = {
-    display: type === "flex" ? "flex" : "grid",
+    display: "flex",
     width: "container.xl",
   };
 
