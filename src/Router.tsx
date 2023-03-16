@@ -4,22 +4,6 @@ import { Quiz } from "./pages/Quiz";
 import { CreateQuiz } from "./pages/CreateQuiz";
 import { Layout } from "./shared/components/Layout";
 
-export interface IQuiz {
-  question: string;
-  answer: string;
-}
-
-const quiz: IQuiz[] = [
-  {
-    question: "Table",
-    answer: "стол",
-  },
-  {
-    question: "Chair",
-    answer: "кресло",
-  },
-];
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: "quiz",
-    element: <Quiz quiz={quiz} />,
+    element: <Quiz />,
   },
 ]);
 

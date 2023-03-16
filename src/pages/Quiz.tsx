@@ -1,28 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { Question } from "../shared/components/Question";
 
-import { IQuiz } from "../Router";
-
-interface IProps {
-  quiz: IQuiz[];
-}
+import { Quiz as IQuiz } from "../entities/quiz/model/models";
 
 const defaultResult = {
   correct: 0,
   incorrect: 0,
 };
 
-export const Quiz: React.FC<IProps> = ({ quiz }) => {
+export const Quiz: React.FC = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
+  const [quiz, setQuiz] = useState<IQuiz>();
   const [steps, setSteps] = useState(0);
   const [answers, setAnswers] = useState(defaultResult);
 
+  useEffect(() => {
+    fetch(`quiz/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setQuiz(data.quiz);
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
+
   function handleAnswer(input: string) {
-    if (input.toLowerCase() === quiz[steps].answer) {
+    if (input.toLowerCase() === quiz?.questions[steps].answer) {
       setSteps(steps + 1);
       setAnswers({ ...answers, correct: answers.correct + 1 });
       return;
@@ -46,13 +53,13 @@ export const Quiz: React.FC<IProps> = ({ quiz }) => {
       justifyContent="center"
       alignItems="center"
     >
-      {steps !== quiz.length ? (
+      {quiz !== undefined && steps !== quiz.questions.length ? (
         <Box>
           <Button mb={4} colorScheme="gray" onClick={() => navigate("/")}>
             Back
           </Button>
           <Question
-            word={quiz[steps].question}
+            word={quiz.questions[steps].question}
             handleAnswer={handleAnswer}
             steps={steps}
           />

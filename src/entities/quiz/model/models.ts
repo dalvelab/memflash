@@ -4,9 +4,10 @@ export interface Question {
 }
 
 export interface Quiz {
+  id: string;
   title: string;
+  description: string;
   questions: Question[];
   createDate: Date;
-  editDate: Date;
-  level: number;
+  editDate?: Date;
 }
