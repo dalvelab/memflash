@@ -18,10 +18,10 @@ export const Question: React.FC<IProps> = ({ word, steps, handleAnswer }) => {
 
   return (
     <Flex w="520px" flexDirection="column" gap={3}>
-      <Text color="white" fontSize="3xl">
+      <Text color="white" fontSize="2xl">
         Enter the translation for next word
       </Text>
-      <Text color="white" fontSize="2xl">
+      <Text color="white" fontSize="3xl">
         {word}
       </Text>
       <Input

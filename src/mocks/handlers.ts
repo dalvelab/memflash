@@ -54,6 +54,10 @@ export const handlers = [
             question: "Chair",
             answer: "кресло",
           },
+          {
+            question: "Progress",
+            answer: "прогресс",
+          },
         ],
       },
     };

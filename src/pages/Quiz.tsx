@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, Progress } from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { Question } from "../shared/components/Question";
@@ -58,6 +58,18 @@ export const Quiz: React.FC = () => {
           <Button mb={4} colorScheme="gray" onClick={() => navigate("/")}>
             Back
           </Button>
+          <Box mt={6} mb={6}>
+            <Text color="white" fontSize="lg">
+              Question {steps + 1} of {quiz.questions.length}
+            </Text>
+            <Progress
+              mt={3}
+              colorScheme="green"
+              size="sm"
+              value={steps === 0 ? 0 : (steps / quiz.questions.length) * 100}
+              borderRadius={2}
+            />
+          </Box>
           <Question
             word={quiz.questions[steps].question}
             handleAnswer={handleAnswer}

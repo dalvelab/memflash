@@ -19,9 +19,11 @@ export const Navbar = () => {
       zIndex={2}
     >
       <Container alignItems="center" justifyContent="space-between">
-        <Text fontWeight={600} fontSize="2xl">
-          Memflash
-        </Text>
+        <Link as={ReactRouterLink} to="/">
+          <Text fontWeight={600} fontSize="2xl">
+            Memflash
+          </Text>
+        </Link>
         <Flex gap={2}>
           <Link as={ReactRouterLink} to="/">
             Dashboard
