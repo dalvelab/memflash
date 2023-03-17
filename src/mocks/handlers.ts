@@ -10,6 +10,9 @@ interface QuizeResponse {
   quiz: Quiz;
 }
 
+interface CreateQuizRequest
+  extends Pick<Quiz, "title" | "description" | "questions"> {}
+
 export const handlers = [
   rest.get("/quizzes", (req, res, ctx) => {
     const data: QuizzesResponse = {
@@ -56,5 +59,19 @@ export const handlers = [
     };
 
     return res(ctx.json(data));
+  }),
+  rest.post("/quiz/create", async (req, res, ctx) => {
+    const { title, description, questions } =
+      (await req.json()) as CreateQuizRequest;
+
+    const response: Quiz = {
+      id: "random_id_1",
+      title,
+      description,
+      questions,
+      createDate: new Date(),
+    };
+
+    return res(ctx.json(response));
   }),
 ];
