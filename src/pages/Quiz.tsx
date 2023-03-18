@@ -20,7 +20,7 @@ export const Quiz: React.FC = () => {
   const [answers, setAnswers] = useState(defaultResult);
 
   useEffect(() => {
-    fetch(`quiz/${id}`)
+    fetch(`/quiz/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setQuiz(data.quiz);

@@ -25,11 +25,8 @@ export const Navbar = () => {
           </Text>
         </Link>
         <Flex gap={2}>
-          <Link as={ReactRouterLink} to="/">
-            Dashboard
-          </Link>
-          <Link as={ReactRouterLink} to="/quiz">
-            Quiz
+          <Link as={ReactRouterLink} to="quiz/create">
+            Create Quiz
           </Link>
         </Flex>
       </Container>

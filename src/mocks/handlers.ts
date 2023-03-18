@@ -33,6 +33,22 @@ export const handlers = [
             },
           ],
         },
+        {
+          id: "quiz-1235",
+          title: "Quiz #2",
+          description: "Brief description of quiz content",
+          createDate: new Date(),
+          questions: [
+            {
+              question: "Table",
+              answer: "стол",
+            },
+            {
+              question: "Chair",
+              answer: "кресло",
+            },
+          ],
+        },
       ],
     };
 

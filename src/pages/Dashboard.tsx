@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import {
+  Badge,
   chakra,
-  Card,
   Flex,
-  CardHeader,
-  CardBody,
   Text,
   Grid,
   Heading,
-  CardFooter,
   Button,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
@@ -40,19 +37,34 @@ export const Dashboard = () => {
           Create new
         </Button>
       </Flex>
-      <Grid my={5} gridTemplateColumns="1fr 1fr 1fr">
+      <Grid my={5} gridTemplateColumns="1fr 1fr 1fr" gap={4}>
         {quizzes.map((quiz) => (
-          <Card key={quiz.id} bg="#1c1c19" borderRadius={6}>
-            <CardHeader color="white">{quiz.title}</CardHeader>
-            <CardBody>
-              <Text color="white">{quiz.description}</Text>
-            </CardBody>
-            <CardFooter>
-              <Button onClick={() => navigate("quiz")} colorScheme="gray">
-                Start
-              </Button>
-            </CardFooter>
-          </Card>
+          <Flex
+            h="52"
+            key={quiz.id}
+            flexDir="column"
+            alignItems="flex-start"
+            justifyContent="space-between"
+            bg="#1c1c19"
+            borderRadius={6}
+            p={4}
+          >
+            <Flex w="full" justifyContent="space-between" alignItems="center">
+              <Text fontSize="2xl" color="white">
+                {quiz.title}
+              </Text>
+              <Badge colorScheme="purple">New</Badge>
+            </Flex>
+            <Text fontSize="lg" color="white">
+              {quiz.description}
+            </Text>
+            <Button
+              onClick={() => navigate(`/quiz/${quiz.id}`)}
+              colorScheme="gray"
+            >
+              Start
+            </Button>
+          </Flex>
         ))}
       </Grid>
     </chakra.section>
