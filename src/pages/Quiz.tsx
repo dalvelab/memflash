@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box, Button, Flex, Text, Progress } from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
 
 import { Question } from "../shared/components/Question";
 
-import { Quiz as IQuiz } from "../entities/quiz/model/models";
+import { fetchQuiz } from "../entities/quiz/api/api";
 
 const defaultResult = {
   correct: 0,
@@ -15,21 +16,19 @@ export const Quiz: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [quiz, setQuiz] = useState<IQuiz>();
+  const { isLoading, error, data, isFetching } = useQuery(
+    ["quiz  ", id],
+    () => fetchQuiz(id),
+    {
+      enabled: !!id,
+    }
+  );
+
   const [steps, setSteps] = useState(0);
   const [answers, setAnswers] = useState(defaultResult);
 
-  useEffect(() => {
-    fetch(`/quiz/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setQuiz(data.quiz);
-      })
-      .catch((err) => console.log(err));
-  }, [id]);
-
   function handleAnswer(input: string) {
-    if (input.toLowerCase() === quiz?.questions[steps].answer) {
+    if (input.toLowerCase() === data?.questions[steps].answer) {
       setSteps(steps + 1);
       setAnswers({ ...answers, correct: answers.correct + 1 });
       return;
@@ -53,25 +52,25 @@ export const Quiz: React.FC = () => {
       justifyContent="center"
       alignItems="center"
     >
-      {quiz !== undefined && steps !== quiz.questions.length ? (
+      {data !== undefined && steps !== data.questions.length ? (
         <Box>
           <Button mb={4} colorScheme="gray" onClick={() => navigate("/")}>
             Back
           </Button>
           <Box mt={6} mb={6}>
             <Text color="white" fontSize="lg">
-              Question {steps + 1} of {quiz.questions.length}
+              Question {steps + 1} of {data.questions.length}
             </Text>
             <Progress
               mt={3}
               colorScheme="green"
               size="sm"
-              value={steps === 0 ? 0 : (steps / quiz.questions.length) * 100}
+              value={steps === 0 ? 0 : (steps / data.questions.length) * 100}
               borderRadius={2}
             />
           </Box>
           <Question
-            word={quiz.questions[steps].question}
+            word={data.questions[steps].question}
             handleAnswer={handleAnswer}
             steps={steps}
           />

@@ -6,10 +6,6 @@ interface QuizzesResponse {
   quizzes: Quiz[];
 }
 
-interface QuizeResponse {
-  quiz: Quiz;
-}
-
 interface CreateQuizRequest
   extends Pick<Quiz, "title" | "description" | "questions"> {}
 
@@ -55,27 +51,25 @@ export const handlers = [
     return res(ctx.json(data));
   }),
   rest.get("/quiz/:id", (req, res, ctx) => {
-    const data: QuizeResponse = {
-      quiz: {
-        id: "quiz-1234",
-        title: "Quiz #1",
-        description: "Brief description of quiz content",
-        createDate: new Date(),
-        questions: [
-          {
-            question: "Table",
-            answer: "стол",
-          },
-          {
-            question: "Chair",
-            answer: "кресло",
-          },
-          {
-            question: "Progress",
-            answer: "прогресс",
-          },
-        ],
-      },
+    const data: Quiz = {
+      id: "quiz-1234",
+      title: "Quiz #1",
+      description: "Brief description of quiz content",
+      createDate: new Date(),
+      questions: [
+        {
+          question: "Table",
+          answer: "стол",
+        },
+        {
+          question: "Chair",
+          answer: "кресло",
+        },
+        {
+          question: "Progress",
+          answer: "прогресс",
+        },
+      ],
     };
 
     return res(ctx.json(data));

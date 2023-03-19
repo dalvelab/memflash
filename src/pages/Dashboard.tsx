@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   Badge,
   chakra,
@@ -9,25 +8,21 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { Quiz } from "../entities/quiz/model/models";
+import { useQuery } from "react-query";
+import { fetchQuizzes } from "../entities/quiz/api/api";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
 
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
-
-  useEffect(() => {
-    const data = fetch("/quizzes");
-
-    data
-      .then((res) => res.json())
-      .then((data) => {
-        setQuizzes(data.quizzes);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const { isLoading, error, data, isFetching } = useQuery(
+    "quizzes",
+    fetchQuizzes,
+    {
+      initialData: {
+        quizzes: [],
+      },
+    }
+  );
 
   return (
     <chakra.section w="full" display="flex" flexDir="column">
@@ -38,7 +33,7 @@ export const Dashboard = () => {
         </Button>
       </Flex>
       <Grid my={5} gridTemplateColumns="1fr 1fr 1fr" gap={4}>
-        {quizzes.map((quiz) => (
+        {data?.quizzes.map((quiz) => (
           <Flex
             h="52"
             key={quiz.id}
