@@ -18,6 +18,7 @@ export const handlers = [
           title: "Quiz #1",
           description: "Brief description of quiz content",
           createDate: new Date(),
+          status: "progress",
           questions: [
             {
               question: "Table",
@@ -34,6 +35,41 @@ export const handlers = [
           title: "Quiz #2",
           description: "Brief description of quiz content",
           createDate: new Date(),
+          status: "new",
+          questions: [
+            {
+              question: "Table",
+              answer: "стол",
+            },
+            {
+              question: "Chair",
+              answer: "кресло",
+            },
+          ],
+        },
+        {
+          id: "quiz-1236",
+          title: "Quiz #3",
+          description: "Brief description of quiz content",
+          createDate: new Date(),
+          status: "repeat",
+          questions: [
+            {
+              question: "Table",
+              answer: "стол",
+            },
+            {
+              question: "Chair",
+              answer: "кресло",
+            },
+          ],
+        },
+        {
+          id: "quiz-1237",
+          title: "Quiz #4",
+          description: "Brief description of quiz content",
+          createDate: new Date(),
+          status: "mastered",
           questions: [
             {
               question: "Table",
@@ -56,6 +92,7 @@ export const handlers = [
       title: "Quiz #1",
       description: "Brief description of quiz content",
       createDate: new Date(),
+      status: "new",
       questions: [
         {
           question: "Table",
@@ -83,6 +120,7 @@ export const handlers = [
       title,
       description,
       questions,
+      status: "new",
       createDate: new Date(),
     };
 
