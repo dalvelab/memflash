@@ -28,6 +28,12 @@ export const Navbar = () => {
           <Link as={ReactRouterLink} to="quiz/create">
             Create Quiz
           </Link>
+          <Link as={ReactRouterLink} to="auth/signin">
+            Login
+          </Link>
+          <Link as={ReactRouterLink} to="auth/signup">
+            Register
+          </Link>
         </Flex>
       </Container>
     </Flex>
