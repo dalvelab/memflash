@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
-import { Flex, Button, Text, Input } from "@chakra-ui/react";
+import { Flex, Button, Text } from "@chakra-ui/react";
+
+import { Input } from "./Input";
 
 interface IProps {
-  word: string;
+  question: string;
   handleAnswer: (input: string) => void;
   steps: number;
 }
 
-export const Question: React.FC<IProps> = ({ word, steps, handleAnswer }) => {
+export const Question: React.FC<IProps> = ({
+  question,
+  steps,
+  handleAnswer,
+}) => {
   const [input, setInput] = useState("");
 
   useEffect(() => {
@@ -18,20 +24,20 @@ export const Question: React.FC<IProps> = ({ word, steps, handleAnswer }) => {
 
   return (
     <Flex w="520px" flexDirection="column" gap={3}>
-      <Text color="white" fontSize="2xl">
+      <Text color="gray.400" fontSize="lg">
         Enter the translation for next word
       </Text>
-      <Text color="white" fontSize="3xl">
-        {word}
+      <Text color="#1f6feb" fontWeight={500} fontSize="2xl">
+        {question}
       </Text>
       <Input
+        size="md"
         type="text"
         name="answer"
-        color="white"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <Button colorScheme="green" onClick={() => handleAnswer(input)}>
+      <Button size="md" colorScheme="green" onClick={() => handleAnswer(input)}>
         Submit
       </Button>
     </Flex>

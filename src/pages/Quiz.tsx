@@ -45,7 +45,7 @@ export const Quiz: React.FC = () => {
 
   return (
     <Box
-      bg="#242424"
+      bg="black.default"
       w="full"
       h="100vh"
       display="flex"
@@ -53,30 +53,37 @@ export const Quiz: React.FC = () => {
       alignItems="center"
     >
       {data !== undefined && steps !== data.questions.length ? (
-        <Box>
-          <Button mb={4} colorScheme="gray" onClick={() => navigate("/")}>
-            Back
-          </Button>
-          <Box mt={6} mb={6}>
-            <Text color="white" fontSize="lg">
-              Question {steps + 1} of {data.questions.length}
-            </Text>
-            <Progress
-              mt={3}
-              colorScheme="green"
-              size="sm"
-              value={steps === 0 ? 0 : (steps / data.questions.length) * 100}
-              borderRadius={2}
-            />
+        <Box
+          bg="black.header"
+          p={5}
+          border="1px solid"
+          borderColor="border.default"
+          borderRadius="md"
+        >
+          <Box mb={6}>
+            <Button mb={4} colorScheme="gray" onClick={() => navigate("/")}>
+              Back
+            </Button>
+            <Flex mt={6} gap={3} flexDir="column">
+              <Text color="white" fontSize="lg">
+                {steps + 1} of {data.questions.length}
+              </Text>
+              <Progress
+                colorScheme="green"
+                size="sm"
+                value={steps === 0 ? 0 : (steps / data.questions.length) * 100}
+                borderRadius={2}
+              />
+            </Flex>
           </Box>
           <Question
-            word={data.questions[steps].question}
+            question={data.questions[steps].question}
             handleAnswer={handleAnswer}
             steps={steps}
           />
         </Box>
       ) : (
-        <Flex flexDir="column" gap={3}>
+        <Flex flexDir="column" gap={3} bg="black.header">
           <Text color="white" fontSize="3xl">
             Finished
           </Text>

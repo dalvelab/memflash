@@ -17,8 +17,10 @@ export const QuizCard: React.FC<QuizCardProps> = ({ quiz }) => {
       flexDir="column"
       alignItems="flex-start"
       justifyContent="space-between"
-      bg="#1c1c19"
       borderRadius={6}
+      bg="black.header"
+      border="1px solid"
+      borderColor="border.default"
       p={4}
     >
       <Flex w="full" justifyContent="space-between" alignItems="center">

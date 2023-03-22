@@ -19,15 +19,14 @@ export const Dashboard = () => {
 
   return (
     <chakra.section w="full" display="flex" flexDir="column">
-      <Flex mt={6} justifyContent="space-between">
-        <Heading color="white">Dashboard</Heading>
+      <Flex mt={6} justifyContent="flex-end">
         <Button onClick={() => navigate("quiz/create")} colorScheme="gray">
           Create new
         </Button>
       </Flex>
-      <Grid my={5} gridTemplateColumns="1fr 1fr 1fr" gap={4}>
+      <Grid my={6} gridTemplateColumns="1fr 1fr 1fr" gap={6}>
         {data?.quizzes.map((quiz) => (
-          <QuizCard quiz={quiz} />
+          <QuizCard key={quiz.id} quiz={quiz} />
         ))}
       </Grid>
     </chakra.section>

@@ -1,2 +1,2 @@
-export * from "./Navigation";
-export * from "./Navigation";
+export * from "./Navbar";
+export * from "./Input";

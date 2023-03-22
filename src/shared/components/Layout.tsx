@@ -10,7 +10,7 @@ export const Layout = () => {
       <Navbar />
       <chakra.main
         mt={16}
-        bg="#242424"
+        bg="black.default"
         height="auto"
         minH="calc(100vh - 64px)"
         display="flex"

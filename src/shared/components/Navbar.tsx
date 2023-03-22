@@ -1,4 +1,4 @@
-import { Flex, Link, Text } from "@chakra-ui/react";
+import { Flex, Link, Text, Heading } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 import { Container } from "./Container";
@@ -9,7 +9,7 @@ export const Navbar = () => {
       w="full"
       h={16}
       p={4}
-      bgColor="white"
+      bg="black.header"
       gap={2}
       justifyContent="center"
       alignItems="center"
@@ -18,20 +18,39 @@ export const Navbar = () => {
       top={0}
       zIndex={2}
     >
-      <Container alignItems="center" justifyContent="space-between">
+      <Container
+        color="white"
+        alignItems="center"
+        justifyContent="space-between"
+      >
         <Link as={ReactRouterLink} to="/">
-          <Text fontWeight={600} fontSize="2xl">
-            Memflash
-          </Text>
+          <Heading color="white" fontSize="3xl">
+            MemFlash
+          </Heading>
         </Link>
-        <Flex gap={2}>
-          <Link as={ReactRouterLink} to="quiz/create">
+        <Flex gap={6}>
+          <Link
+            _hover={{ color: "gray.300" }}
+            fontWeight={500}
+            as={ReactRouterLink}
+            to="quiz/create"
+          >
             Create Quiz
           </Link>
-          <Link as={ReactRouterLink} to="auth/signin">
+          <Link
+            _hover={{ color: "gray.300" }}
+            fontWeight={500}
+            as={ReactRouterLink}
+            to="auth/signin"
+          >
             Login
           </Link>
-          <Link as={ReactRouterLink} to="auth/signup">
+          <Link
+            _hover={{ color: "gray.300" }}
+            fontWeight={500}
+            as={ReactRouterLink}
+            to="auth/signup"
+          >
             Register
           </Link>
         </Flex>
