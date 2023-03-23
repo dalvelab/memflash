@@ -10,6 +10,9 @@ const theme = extendTheme({
     border: {
       default: "#30363d",
     },
+    blue: {
+      default: "#1f6feb",
+    },
   },
 });
 

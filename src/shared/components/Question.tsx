@@ -27,7 +27,7 @@ export const Question: React.FC<IProps> = ({
       <Text color="gray.400" fontSize="lg">
         Enter the translation for next word
       </Text>
-      <Text color="#1f6feb" fontWeight={500} fontSize="2xl">
+      <Text color="blue.default" fontWeight={500} fontSize="2xl">
         {question}
       </Text>
       <Input
