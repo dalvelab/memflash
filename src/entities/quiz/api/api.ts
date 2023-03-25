@@ -13,3 +13,9 @@ export function fetchQuizzes(): Promise<APIResponse> {
 export function fetchQuiz(id?: string): Promise<Quiz> {
   return axios.get(`/quiz/${id}`).then((res) => res.data);
 }
+
+export function createQuiz(
+  quiz: Pick<Quiz, "title" | "description" | "questions">
+) {
+  return axios.post("/quiz/create", quiz);
+}

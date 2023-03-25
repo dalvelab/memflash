@@ -1,7 +1,7 @@
-import { Box, chakra, Grid, Flex, Text, IconButton } from "@chakra-ui/react";
+import { Box, Grid, Flex, Text, IconButton } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
-import { Input } from "../shared/components";
+import { InputGroup } from "../shared/components";
 
 import { Question } from "../entities/quiz/model";
 
@@ -45,36 +45,24 @@ export const QuizCardCreate: React.FC<IQuizCardCreate> = ({
         />
       </Flex>
       <Grid mt={3} gridTemplateColumns="1fr 1fr" gap={5}>
-        <Box>
-          <chakra.label color="gray.200" htmlFor="description" fontSize="lg">
-            Question
-          </chakra.label>
-          <Input
-            size="lg"
-            mt={2}
-            placeholder="Question"
-            color="white"
-            name="question"
-            autoComplete="off"
-            value={question.question}
-            onChange={(e) => onInputChange("question", e.target.value, index)}
-          />
-        </Box>
-        <Box>
-          <chakra.label color="white" htmlFor="answer" fontSize="lg">
-            Answer
-          </chakra.label>
-          <Input
-            size="lg"
-            mt={2}
-            placeholder="Answer"
-            color="white"
-            name="answer"
-            autoComplete="off"
-            value={question.answer}
-            onChange={(e) => onInputChange("answer", e.target.value, index)}
-          />
-        </Box>
+        <InputGroup
+          label="Question"
+          name="question"
+          size="lg"
+          placeholder="Question"
+          autoComplete="off"
+          value={question.question}
+          onChange={(e) => onInputChange("question", e.target.value, index)}
+        />
+        <InputGroup
+          label="Answer"
+          name="answer"
+          size="lg"
+          placeholder="Answer"
+          autoComplete="off"
+          value={question.answer}
+          onChange={(e) => onInputChange("answer", e.target.value, index)}
+        />
       </Grid>
     </Box>
   );

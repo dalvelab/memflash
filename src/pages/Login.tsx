@@ -1,6 +1,6 @@
 import { chakra, Box, Flex, Heading, Button } from "@chakra-ui/react";
 
-import { Input } from "../shared/components";
+import { InputGroup } from "../shared/components";
 
 export const Login = () => {
   return (
@@ -22,19 +22,23 @@ export const Login = () => {
         <Heading alignSelf="center" color="white">
           Sign In
         </Heading>
-        <Box mt={4} w="full">
-          <chakra.label color="white" htmlFor="email">
-            Email
-          </chakra.label>
-          <Input mt={2} placeholder="Email" color="white" name="email" />
+        <Box mt={4}>
+          <InputGroup
+            label="Email"
+            name="email"
+            size="lg"
+            placeholder="Email"
+          />
         </Box>
-        <Box mt={4} w="full">
-          <chakra.label color="white" htmlFor="password">
-            Password
-          </chakra.label>
-          <Input mt={2} placeholder="Password" color="white" name="password" />
+        <Box mt={4}>
+          <InputGroup
+            label="Password"
+            name="password"
+            size="lg"
+            placeholder="Password"
+          />
         </Box>
-        <Button colorScheme="green" mt={6}>
+        <Button size="lg" colorScheme="green" mt={4}>
           Sign In
         </Button>
       </Flex>

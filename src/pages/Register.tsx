@@ -1,6 +1,6 @@
 import { chakra, Box, Flex, Heading, Button } from "@chakra-ui/react";
 
-import { Input } from "../shared/components";
+import { InputGroup } from "../shared/components";
 
 export const Register = () => {
   return (
@@ -23,25 +23,31 @@ export const Register = () => {
         <Heading alignSelf="center" color="white">
           Sign Up
         </Heading>
-        <Box mt={4} w="full">
-          <chakra.label color="white" htmlFor="email">
-            Email
-          </chakra.label>
-          <Input mt={2} placeholder="Email" color="white" name="email" />
+        <Box mt={4}>
+          <InputGroup
+            label="Email"
+            name="email"
+            size="lg"
+            placeholder="Email"
+          />
         </Box>
-        <Box mt={4} w="full">
-          <chakra.label color="white" htmlFor="password">
-            Password
-          </chakra.label>
-          <Input mt={2} placeholder="Password" color="white" name="password" />
+        <Box mt={4}>
+          <InputGroup
+            label="Password"
+            name="password"
+            size="lg"
+            placeholder="Password"
+          />
         </Box>
-        <Box mt={4} w="full">
-          <chakra.label color="white" htmlFor="password">
-            Repeat password
-          </chakra.label>
-          <Input mt={2} placeholder="Password" color="white" name="password" />
+        <Box mt={4}>
+          <InputGroup
+            label="Repeat password"
+            name="password_repeat"
+            size="lg"
+            placeholder="Repeat password"
+          />
         </Box>
-        <Button colorScheme="green" mt={6}>
+        <Button size="lg" colorScheme="green" mt={4}>
           Sign Up
         </Button>
       </Flex>
