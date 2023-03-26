@@ -1,17 +1,17 @@
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { startWorker } from "./mocks/browser";
-import "./index.css";
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import {startWorker} from './mocks/browser';
+import './index.css';
 
-if (process.env.NODE_ENV === "development") {
-  startWorker();
+if (process.env.NODE_ENV === 'development') {
+	startWorker();
 }
 
 const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <QueryClientProvider client={queryClient}>
-    <App />
-  </QueryClientProvider>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+	<QueryClientProvider client={queryClient}>
+		<App />
+	</QueryClientProvider>,
 );

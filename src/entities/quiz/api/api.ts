@@ -1,21 +1,21 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { Quiz } from "../model/models";
+import {type Quiz} from '../model/models';
 
-interface APIResponse {
-  quizzes: Quiz[];
+type ApiResponse = {
+	quizzes: Quiz[];
+};
+
+export async function fetchQuizzes(): Promise<ApiResponse> {
+	return axios.get('/quizzes').then(res => res.data);
 }
 
-export function fetchQuizzes(): Promise<APIResponse> {
-  return axios.get("/quizzes").then((res) => res.data);
+export async function fetchQuiz(id?: string): Promise<Quiz> {
+	return axios.get(`/quiz/${id}`).then(res => res.data);
 }
 
-export function fetchQuiz(id?: string): Promise<Quiz> {
-  return axios.get(`/quiz/${id}`).then((res) => res.data);
-}
-
-export function createQuiz(
-  quiz: Pick<Quiz, "title" | "description" | "questions">
+export async function createQuiz(
+	quiz: Pick<Quiz, 'title' | 'description' | 'questions'>,
 ) {
-  return axios.post("/quiz/create", quiz);
+	return axios.post('/quiz/create', quiz);
 }

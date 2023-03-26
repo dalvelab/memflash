@@ -1,27 +1,27 @@
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { Router } from "./Router";
+import {ChakraProvider, extendTheme} from '@chakra-ui/react';
+import {Router} from './Router';
 
 const theme = extendTheme({
-  colors: {
-    black: {
-      header: "#161b22",
-      default: "#0d1117",
-    },
-    border: {
-      default: "#30363d",
-    },
-    blue: {
-      default: "#1f6feb",
-    },
-  },
+	colors: {
+		black: {
+			header: '#161b22',
+			default: '#0d1117',
+		},
+		border: {
+			default: '#30363d',
+		},
+		blue: {
+			default: '#1f6feb',
+		},
+	},
 });
 
 function App() {
-  return (
-    <ChakraProvider theme={theme}>
-      <Router />
-    </ChakraProvider>
-  );
+	return (
+		<ChakraProvider theme={theme}>
+			<Router />
+		</ChakraProvider>
+	);
 }
 
 export default App;

@@ -1,1 +1,1 @@
-export { QuizCardCreate } from "./create-quiz-card";
+export {QuizCardCreate} from './create-quiz-card';

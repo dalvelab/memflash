@@ -1,20 +1,20 @@
-import { ReactNode } from "react";
+import {type ReactNode} from 'react';
 
-import { chakra, StyleProps } from "@chakra-ui/react";
+import {chakra, type StyleProps} from '@chakra-ui/react';
 
-interface ContainerProps extends StyleProps {
-  children: ReactNode;
-}
+type ContainerProps = {
+	children: ReactNode;
+} & StyleProps;
 
-export const Container: React.FC<ContainerProps> = ({ children, ...props }) => {
-  const containerBase = {
-    display: "flex",
-    width: "container.xl",
-  };
+export const Container: React.FC<ContainerProps> = ({children, ...props}) => {
+	const containerBase = {
+		display: 'flex',
+		width: 'container.xl',
+	};
 
-  return (
-    <chakra.div __css={{ ...containerBase }} {...props}>
-      {children}
-    </chakra.div>
-  );
+	return (
+		<chakra.div __css={{...containerBase}} {...props}>
+			{children}
+		</chakra.div>
+	);
 };

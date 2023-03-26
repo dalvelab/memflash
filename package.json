@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.17",
@@ -23,10 +24,17 @@
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
     "@vitejs/plugin-react": "^3.1.0",
+    "eslint": "^8.36.0",
+    "eslint-config-xo": "^0.43.1",
+    "eslint-config-xo-typescript": "^0.56.0",
+    "eslint-plugin-react": "^7.32.2",
     "msw": "^1.1.0",
-    "typescript": "^4.9.3",
-    "vite": "^4.1.0"
+    "typescript": "^5.0.2",
+    "vite": "^4.1.0",
+    "vite-tsconfig-paths": "^4.0.7"
   },
   "msw": {
     "workerDirectory": "public"
