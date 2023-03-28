@@ -89,9 +89,9 @@ export const CreateQuiz = () => {
 
 	return (
 		<chakra.section w='full' display='flex' flexDir='column'>
-			<Flex mt={6} justifyContent='space-between'>
+			<Flex mt={6} justifyContent='space-between' alignItems='center'>
 				<Heading size='lg' fontWeight='medium' color='white'>
-          Create new quiz
+        Create new quiz
 				</Heading>
 				<Flex gap={3}>
 					<Button colorScheme='gray'>Import</Button>
@@ -106,7 +106,7 @@ export const CreateQuiz = () => {
 				</Flex>
 			</Flex>
 			<Box
-				mt={5}
+				mt={6}
 				border='1px solid'
 				borderColor='border.default'
 				borderRadius='md'
@@ -116,7 +116,6 @@ export const CreateQuiz = () => {
 						label='Title'
 						name='title'
 						size='lg'
-						mt={3}
 						placeholder='Enter a title for your quiz'
 						autoComplete='off'
 						value={title}
@@ -128,7 +127,6 @@ export const CreateQuiz = () => {
 						label='Description'
 						name='description'
 						size='lg'
-						mt={3}
 						placeholder='Enter a description for your quiz'
 						autoComplete='off'
 						value={description}

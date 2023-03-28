@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react';
 import {Flex, Button, Text} from '@chakra-ui/react';
 
-import {Input} from './Input';
+import {InputGroup} from './InputGroup';
 
 type QuestionProps = {
 	question: string;
-	handleAnswer: (input: string) => void;
+	handleAnswer: (e: React.FormEvent<HTMLFormElement>, input: string) => void;
 	steps: number;
 };
 
@@ -21,27 +21,32 @@ export const Question: React.FC<QuestionProps> = ({
 	}, [steps]);
 
 	return (
-		<Flex w='520px' flexDirection='column' gap={3}>
+		<Flex w='full' flexDirection='column' gap={3}>
 			<Text color='gray.400' fontSize='lg'>
         Enter the translation for next word
 			</Text>
-			<Text color='blue.default' fontWeight={500} fontSize='2xl'>
+			<Text color='blue.default' fontWeight={500} fontSize='3xl'>
 				{question}
 			</Text>
-			<Input
-				size='md'
-				type='text'
-				name='answer'
-				value={input}
-				onChange={e => {
-					setInput(e.target.value);
-				}}
-			/>
-			<Button size='md' colorScheme='green' onClick={() => {
-				handleAnswer(input);
+			<form onSubmit={e => {
+				handleAnswer(e, input);
 			}}>
-        Submit
-			</Button>
+				<Flex flexDir='column'>
+					<InputGroup
+						label=''
+						size='lg'
+						type='text'
+						name='answer'
+						value={input}
+						onChange={e => {
+							setInput(e.target.value);
+						}}
+					/>
+					<Button mt={4} type='submit' size='lg' colorScheme='green'>
+						Submit
+					</Button>
+				</Flex>
+			</form>
 		</Flex>
 	);
 };

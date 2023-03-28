@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Box, Button, Flex, Text, Progress} from '@chakra-ui/react';
+import {Box, Button, Flex, Text, Progress, chakra} from '@chakra-ui/react';
 import {useParams, useNavigate} from 'react-router-dom';
 import {useQuery} from 'react-query';
 
@@ -16,7 +16,7 @@ export const Quiz: React.FC = () => {
 	const navigate = useNavigate();
 	const {id} = useParams();
 
-	const {isLoading, error, data, isFetching} = useQuery(
+	const {isLoading, error, data} = useQuery(
 		['quiz  ', id],
 		async () => fetchQuiz(id),
 		{
@@ -27,7 +27,9 @@ export const Quiz: React.FC = () => {
 	const [steps, setSteps] = useState(0);
 	const [answers, setAnswers] = useState(defaultResult);
 
-	function handleAnswer(input: string) {
+	function handleAnswer(e: React.FormEvent<HTMLFormElement>, input: string) {
+		e.preventDefault();
+
 		if (input.toLowerCase() === data?.questions[steps].answer) {
 			setSteps(steps + 1);
 			setAnswers({...answers, correct: answers.correct + 1});
@@ -44,7 +46,7 @@ export const Quiz: React.FC = () => {
 	}
 
 	return (
-		<Box
+		<chakra.section
 			bg='black.default'
 			w='full'
 			h='100vh'
@@ -52,20 +54,21 @@ export const Quiz: React.FC = () => {
 			justifyContent='center'
 			alignItems='center'
 		>
-			{data !== undefined && steps !== data.questions.length ? (
-				<Box
-					bg='black.header'
-					p={5}
-					border='1px solid'
-					borderColor='border.default'
-					borderRadius='md'
-				>
-					<Box mb={6}>
-						<Button mb={4} colorScheme='gray' onClick={() => {
-							navigate('/');
-						}}>
-              Back
-						</Button>
+			<Box
+				w='container.sm'
+				bg='black.header'
+				p={5}
+				border='1px solid'
+				borderColor='border.default'
+				borderRadius='md'
+			>
+				<Button mb={4} colorScheme='gray' onClick={() => {
+					navigate('/');
+				}}>
+          Back
+				</Button>
+				{data !== undefined && steps !== data.questions.length && (
+					<>
 						<Flex mt={6} gap={3} flexDir='column'>
 							<Text color='white' fontSize='lg'>
 								{steps + 1} of {data.questions.length}
@@ -77,26 +80,29 @@ export const Quiz: React.FC = () => {
 								borderRadius={2}
 							/>
 						</Flex>
-					</Box>
-					<Question
-						question={data.questions[steps].question}
-						handleAnswer={handleAnswer}
-						steps={steps}
-					/>
-				</Box>
-			) : (
-				<Flex flexDir='column' gap={3} bg='black.header'>
-					<Text color='white' fontSize='3xl'>
-            Finished
-					</Text>
-					<Text color='white' fontSize='2xl'>
-            Correct: {answers.correct}, Wrong: {answers.incorrect}
-					</Text>
-					<Button colorScheme='gray' onClick={handleRestart}>
-            Start Again
-					</Button>
-				</Flex>
-			)}
-		</Box>
+						<Box mt={6}>
+							<Question
+								question={data.questions[steps].question}
+								handleAnswer={handleAnswer}
+								steps={steps}
+							/>
+						</Box>
+					</>
+				)}
+				{steps === data?.questions.length && (
+					<Flex flexDir='column' gap={3} bg='black.header'>
+						<Text color='white' fontSize='3xl'>
+						Finished
+						</Text>
+						<Text color='white' fontSize='2xl'>
+						Correct: {answers.correct}, Wrong: {answers.incorrect}
+						</Text>
+						<Button colorScheme='gray' onClick={handleRestart}>
+						Start Again
+						</Button>
+					</Flex>
+				)}
+			</Box>
+		</chakra.section>
 	);
 };

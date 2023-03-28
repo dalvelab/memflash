@@ -1,4 +1,4 @@
-import {Box, chakra, type InputProps} from '@chakra-ui/react';
+import {Box, type InputProps, FormControl, FormLabel} from '@chakra-ui/react';
 import {Input} from './Input';
 
 type InputGroupProps = {
@@ -12,9 +12,11 @@ export const InputGroup: React.FC<InputGroupProps> = ({
 	...props
 }) => (
 	<Box>
-		<chakra.label color='gray.200' htmlFor={name} fontSize='lg'>
-			{label}
-		</chakra.label>
-		<Input mt={2} color='white' name={name} {...props} />
+		<FormControl>
+			<FormLabel color='gray.200' htmlFor={name} fontSize='lg'>
+				{label}
+			</FormLabel>
+			<Input mt={1} color='white' name={name} {...props} />
+		</FormControl>
 	</Box>
 );
