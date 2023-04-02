@@ -1,15 +1,15 @@
 import {useState, useEffect} from 'react';
 import {Flex, Button, Text} from '@chakra-ui/react';
 
-import {InputGroup} from './InputGroup';
+import {InputGroup} from 'shared/components/InputGroup';
 
-type QuestionProps = {
+type QuestionFormProps = {
 	question: string;
 	handleAnswer: (e: React.FormEvent<HTMLFormElement>, input: string) => void;
 	steps: number;
 };
 
-export const Question: React.FC<QuestionProps> = ({
+export const QuestionForm: React.FC<QuestionFormProps> = ({
 	question,
 	steps,
 	handleAnswer,

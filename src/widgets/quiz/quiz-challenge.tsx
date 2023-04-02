@@ -1,18 +1,17 @@
 import {useState} from 'react';
-import {Box, Button, Flex, Text, Progress, chakra} from '@chakra-ui/react';
+import {Box, Button, Flex, Text, chakra} from '@chakra-ui/react';
 import {useParams, useNavigate} from 'react-router-dom';
 import {useQuery} from 'react-query';
 
-import {Question} from 'shared/components/Question';
-
-import {fetchQuiz} from 'entities/quiz/api/api';
+import {fetchQuiz, QuestionCard} from 'entities/quiz';
+import {QuestionForm} from 'features/quiz';
 
 const defaultResult = {
 	correct: 0,
 	incorrect: 0,
 };
 
-export const Quiz: React.FC = () => {
+export const QuizChallenge: React.FC = () => {
 	const navigate = useNavigate();
 	const {id} = useParams();
 
@@ -69,19 +68,9 @@ export const Quiz: React.FC = () => {
 				</Button>
 				{data !== undefined && steps !== data.questions.length && (
 					<>
-						<Flex mt={6} gap={3} flexDir='column'>
-							<Text color='white' fontSize='lg'>
-								{steps + 1} of {data.questions.length}
-							</Text>
-							<Progress
-								colorScheme='green'
-								size='sm'
-								value={steps === 0 ? 0 : (steps / data.questions.length) * 100}
-								borderRadius={2}
-							/>
-						</Flex>
+						<QuestionCard steps={steps} setSteps={setSteps} questions={data.questions} />
 						<Box mt={6}>
-							<Question
+							<QuestionForm
 								question={data.questions[steps].question}
 								handleAnswer={handleAnswer}
 								steps={steps}

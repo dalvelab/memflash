@@ -12,10 +12,9 @@ import {
 } from '@chakra-ui/react';
 import {useMutation} from 'react-query';
 
-import {type Question} from '../entities/quiz/model/models';
-import {createQuiz} from '../entities/quiz/api/api';
-import {QuizCardCreate} from '../features';
-import {InputGroup} from '../shared/components';
+import {createQuiz, type Question} from 'entities/quiz';
+import {QuizCardCreate} from 'features/quiz';
+import {InputGroup} from 'shared/components';
 
 export const CreateQuiz = () => {
 	const [title, setTitle] = useState('');
